@@ -1,5 +1,11 @@
 <?php
+/**
+ * The file
+ */
 
+/**
+ * Class Controller_Account
+ */
 class Controller_Account extends Controller_Template
 {
     private $user = null;

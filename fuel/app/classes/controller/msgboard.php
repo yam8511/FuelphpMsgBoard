@@ -215,12 +215,14 @@ class Controller_Msgboard extends Controller_Template
             #先刪除圖片與解除關係
             $pic = $msg->upload;
             $msg->upload = null;
-            if(!File::delete($pic->saved_to.$pic->saved_as)) {
+            if($pic){
+                if(!File::delete($pic->saved_to.$pic->saved_as)) {
                 Session::set_flash('failed','圖片刪除失敗');
                 return Response::redirect('/');
+                }
+                $pic->delete();
             }
-            $pic->delete();
-
+            
             #再刪除每個關聯回覆
             $replies = $msg->replies;
             unset($msg->replies);
@@ -291,6 +293,7 @@ class Controller_Msgboard extends Controller_Template
 
     public function action_404()
     {
+        $this->template->login = $this->login;
         $this->template->title = '此頁面不存在，看看史努比';
         $this->template->content = VIew::forge('msgboard/404');
     }
