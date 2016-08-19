@@ -47,7 +47,7 @@ if(Session::get_flash('failed')): ?>
             <!-- 留言標題 -->
             <h2><b><?= $msg->title ?></b></h2>
             <!-- 留言人 -->
-            <a style="text-decoration: none;" class="w3-text-blue " <?= ($msg->account_id != 0) ? 'href="/msgboard/view/'.$msg->account_id.'"' : '' ?>"><?= $msg->username($msg->account_id) ?></a>
+            <a style="text-decoration: none;" class="w3-text-blue " <?= ($msg->account_id != 0) ? 'href="./msgboard/view/'.$msg->account_id.'"' : '' ?>"><?= $msg->username($msg->account_id) ?></a>
             <!-- 留言日期 -->
             <br><span class="w3-text-grey w3-small">留言日期: <?= $msg->created_at ?></span>
             <br><span class="w3-text-grey w3-small">更新日期: <?= $msg->updated_at ?></span>
