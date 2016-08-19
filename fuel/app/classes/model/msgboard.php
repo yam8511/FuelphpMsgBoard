@@ -3,7 +3,8 @@
 class Model_Msgboard extends \Orm\Model
 {
 	protected static $_belongs_to = array('account');
-	protected static $_has_many = array('uploads');
+	protected static $_has_one = array('upload');
+	protected static $_has_many = array('replies');
 
 	protected static $_properties = array(
 		'id',
@@ -15,15 +16,7 @@ class Model_Msgboard extends \Orm\Model
 	);
 
 	protected static $_table_name = 'msgboards';
-
-	public function uploads($id)
-	{
-		$uploads = Model_Upload::find('all',[
-			'where' => [ 'msgboard_id' => $id ]
-		]);
-		return $uploads;
-	}
-
+/*
 	public function replies($id)
 	{
 		$replies = Model_Reply::find('all',[
@@ -31,7 +24,7 @@ class Model_Msgboard extends \Orm\Model
 		]);
 		return $replies;
 	}
-
+*/
 	public function username($id)
 	{
 		$user = Model_Account::find($id);

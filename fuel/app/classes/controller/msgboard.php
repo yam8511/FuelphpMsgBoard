@@ -150,7 +150,7 @@ class Controller_Msgboard extends Controller_Template
                     $upload->extension = $file['extension'];
                     $upload->saved_as = $file['saved_as'];
                     $upload->saved_to = $file['saved_to'];
-                    $msgboard->uploads[] = $upload;
+                    $msgboard->upload = $upload;
                     $msgboard->save();
                 }
                 else{
@@ -212,17 +212,23 @@ class Controller_Msgboard extends Controller_Template
                 return Response::redirect('/');
             }
 
-            $uploads = Model_Upload::find('all', [
-                'where' => ['msgboard_id' => $msg->id]
-            ]);
+            #先刪除圖片與解除關係
+            $pic = $msg->upload;
+            $msg->upload = null;
+            if(!File::delete($pic->saved_to.$pic->saved_as)) {
+                Session::set_flash('failed','圖片刪除失敗');
+                return Response::redirect('/');
+            }
+            $pic->delete();
 
-            foreach ($uploads as $pic) {
-                if(!File::delete($pic->saved_to.$pic->saved_as)) {
-                    Session::set_flash('failed','圖片刪除失敗');
-                }
-                $pic->delete();
+            #再刪除每個關聯回覆
+            $replies = $msg->replies;
+            unset($msg->replies);
+            foreach ($replies as $reply) {
+                $reply->delete();
             }
 
+            #最後刪除留言
             $msg->delete();
             Session::set_flash('success','Message 刪除成功');
         } else {

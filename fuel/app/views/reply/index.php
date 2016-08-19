@@ -10,7 +10,7 @@
 <div class="w3-container w3-margin-bottom">
     <ul class="w3-ul w3-card-4">
         <!-- 回覆列表 -->
-        <?php $index = 0; foreach( $msg->replies($msg->id) as $rpl ): ?>
+        <?php $index = 0; foreach( $msg->replies as $rpl ): ?>
         <li class="w3-container <?= $bg[($index++) % 2] ?>">
             <div class="w3-container">
                 <span class="w3-large"><a style="text-decoration: none;" href="/view/<?= $rpl->account_id ?>"><?= $rpl->user($rpl->account_id)->name ?></a></span>　　

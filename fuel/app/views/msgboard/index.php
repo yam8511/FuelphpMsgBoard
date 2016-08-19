@@ -53,11 +53,9 @@ if(Session::get_flash('failed')): ?>
             <br><span class="w3-text-grey w3-small">更新日期: <?= $msg->updated_at ?></span>
             <!-- 留言訊息 -->
             <p><?= nl2br($msg->message) ?></p>
-            <?php if($msg->uploads($msg->id)): ?>
+            <?php if($msg->upload): ?>
             <div class="w3-container w3-margin">
-                <?php foreach($msg->uploads as $pic): ?>
-                    <img class="w3-round" src="<?= '/uploads/'.$pic->saved_as ?>" alt="<?= $pic->name ?>">
-                <?php endforeach; ?>
+                    <img class="w3-round" src="<?= '/uploads/'.$msg->upload->saved_as ?>" alt="<?= $msg->upload->name ?>">
             </div>
             <?php endif; ?>
             <!-- 修改&刪除按鈕 -->

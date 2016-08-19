@@ -44,8 +44,10 @@ class Controller_Reply extends Controller_Template
         $rpl->message = $message;
         $rpl->msgboard_id = $msg->id;
         $rpl->account_id = $this->user->id;
-        $rpl->msgboard = $msg;
-        if(!$rpl->save()) {
+
+        $msg->replies[] = $rpl;
+        
+        if(!$msg->save()) {
             Session::set_flash('failed', '回覆發生錯誤');
             return Response::redirect('/');
         }
