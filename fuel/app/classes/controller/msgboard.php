@@ -155,7 +155,7 @@ class Controller_Msgboard extends Controller_Template
                 }
                 else{
                     Session::set_flash('failed','上傳圖片有誤');
-                    \Fuel\Core\Response::redirect('add');
+                    Response::redirect('add');
                 }
             }
 
@@ -207,7 +207,7 @@ class Controller_Msgboard extends Controller_Template
         $id = Input::post('id');
         $msg = Model_Msgboard::find($id);
         if($msg) {
-            if($this->user->id != $msg->account_id) {
+            if(!$this->user->admin && $this->user->id != $msg->account_id) {
                 Session::set_flash('failed', '這不是你發的文!');
                 return Response::redirect('/');
             }

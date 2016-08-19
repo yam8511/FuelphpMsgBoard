@@ -80,7 +80,7 @@ class Controller_Account extends Controller_Template
 	{
             $user = Model_Account::find('first',[
                 'where'=>[
-                    'name'=>Input::post('name'),
+                    'name' => Input::post('name'),
                 ]
             ]);
 

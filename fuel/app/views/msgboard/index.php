@@ -54,19 +54,20 @@ if(Session::get_flash('failed')): ?>
             <!-- 留言訊息 -->
             <p><?= nl2br($msg->message) ?></p>
             <?php if($msg->uploads($msg->id)): ?>
-            <div class="w3-container">
+            <div class="w3-container w3-margin">
                 <?php foreach($msg->uploads as $pic): ?>
                     <img class="w3-round" src="<?= '/uploads/'.$pic->saved_as ?>" alt="<?= $pic->name ?>">
                 <?php endforeach; ?>
             </div>
             <?php endif; ?>
             <!-- 修改&刪除按鈕 -->
-            <?php if($login && $msg->account_id == $user->id): ?>
+            <?php if($login && ($msg->account_id != 0) && ($msg->account_id == $user->id)): ?>
                 <a class="w3-btn-floating  w3-purple" title="修改" onclick="show('modal_edit_msg_<?= $msg->id ?>')"><i
                             class="fa fa-pencil"></i></a>
-                <a class="w3-btn-floating  w3-red" title="刪除" onclick="show('modal_delete_msg_<?= $msg->id ?>')"><i class="fa
-                fa-trash"></i></a>
                 <?= View::forge('modal_edit', ['type' => 'msg', 'msg' => $msg]) ?>
+            <?php endif; ?>
+            <?php if($login && ($msg->account_id == $user->id || $user->admin)): ?>
+                <a class="w3-btn-floating  w3-red" title="刪除" onclick="show('modal_delete_msg_<?= $msg->id ?>')"><i class="fa fa-trash"></i></a>
                 <?= View::forge('modal_delete', ['type' => 'msg', 'msg' => $msg ]) ?>
             <?php endif; ?>
         </div>

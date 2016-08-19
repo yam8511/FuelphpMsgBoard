@@ -10,8 +10,8 @@
 <div class="w3-container w3-margin-bottom">
     <ul class="w3-ul w3-card-4">
         <!-- 回覆列表 -->
-        <?php foreach( $msg->replies($msg->id) as $index => $rpl ): ?>
-        <li class="w3-container <?= $bg[$index%2] ?>">
+        <?php $index = 0; foreach( $msg->replies($msg->id) as $rpl ): ?>
+        <li class="w3-container <?= $bg[($index++) % 2] ?>">
             <div class="w3-container">
                 <span class="w3-large"><a style="text-decoration: none;" href="/view/<?= $rpl->account_id ?>"><?= $rpl->user($rpl->account_id)->name ?></a></span>　　
                 <span class="w3-small w3-text-grey"><?= $rpl->updated_at ?></span><br>
@@ -25,7 +25,7 @@
                     <!-- 顯示編輯視窗 -->
                     <?= View::forge('modal_edit', ['type' => 'rpl', 'msg' => $rpl]) ?>
                 <?php endif; ?>
-                <?php if( $login ): ?>
+                <?php if( $login && ( $rpl->account_id == $user->id || $user->admin)): ?>
                     <a class="w3-btn w3-round w3-red" title="刪除" onclick="show('modal_delete_rpl_<?= $rpl->id ?>')"><i class="fa fa-trash"></i></a>
                     <!-- 顯示刪除提醒視窗 -->
                     <?= View::forge('modal_delete', ['type' => 'rpl', 'msg' => $rpl]) ?>

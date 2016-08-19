@@ -5,7 +5,6 @@ return array(
 	
 	'hello(/:name)?' => array('welcome/hello', 'name' => 'hello'),
 
-
 	'home' => 'msgboard/index',
 
 	'add' =>'msgboard/add',
