@@ -9,7 +9,7 @@ function validate()
 
     if(pass.value != confirm.value)
     {
-        document.getElementById('hint_confirm').innerHTML = '密碼輸入不一樣';
+        document.getElementById('hint_password').innerHTML = '密碼輸入不一樣';
         OK = false;
     }
 

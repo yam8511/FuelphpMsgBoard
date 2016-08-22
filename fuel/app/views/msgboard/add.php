@@ -1,4 +1,4 @@
-<?php $root = '/FuelphpMsgBoard/public/'; ?>
+<?php $root = '/'; ?>
 <a class="w3-btn w3-btn-floating  w3-green" href="<?= $root ?>"><i class="fa fa-mail-reply"></i></a>
 <form action="<?= $root ?>add" method="post" enctype="multipart/form-data" accept-charset="utf-8" class="w3-form w3-border w3-border-teal w3-margin">
     <label class="w3-label">標題</label>

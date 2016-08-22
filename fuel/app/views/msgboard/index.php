@@ -7,7 +7,7 @@
  */
 
 ?>
-<?php $root = '/FuelphpMsgBoard/public/'; ?>
+<?php $root = '/'; ?>
 <div class="w3-container w3-margin">
     <a class="w3-btn w3-btn-floating  w3-teal" title="留話" href="<?= $root ?>add"><i class="fa fa-plus"></i></a>
 
@@ -20,26 +20,6 @@
 
 </div>
 
-<?php
-/**
- * 成功執行後，alert訊息提醒
- */
-if(Session::get_flash('success')){ ?>
-    <div class="w3-round w3-pale-green">
-        <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
-        <h3><i class="fa fa-check-square-o"></i><?= Session::get_flash('success') ?></h3>
-    </div>
-<?php } ?>
-<?php
-/**
- * 發生問題時，alert訊息提醒
- */
-if(Session::get_flash('failed')): ?>
-    <div class="w3-round w3-pale-red">
-        <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
-        <h3><i class="fa fa-frown-o"></i><?= Session::get_flash('failed') ?></h3>
-    </div>
-<?php endif; ?>
 
 <?php $index = 0; foreach($msgs as $msg): ?>
     <div class=" w3-container w3-margin-bottom  w3-leftbar  <?= $style[($index++) % 3] ?>">
@@ -49,8 +29,8 @@ if(Session::get_flash('failed')): ?>
             <!-- 留言人 -->
             <a style="text-decoration: none;" class="w3-text-blue " <?= ($msg->account_id != 0) ? 'href="./view/'.$msg->account_id.'"' : '' ?>"><?= $msg->username($msg->account_id) ?></a>
             <!-- 留言日期 -->
-            <br><span class="w3-text-grey w3-small">留言日期: <?= $msg->created_at ?></span>
-            <br><span class="w3-text-grey w3-small">更新日期: <?= $msg->updated_at ?></span>
+            <br><span class="w3-text-grey w3-small">留言日期: <?= date('Y-m-d H:i:s',$msg->created_at) ?></span>
+            <br><span class="w3-text-grey w3-small">更新日期: <?= $msg->updated_at ? date('Y-m-d H:i:s',$msg->updated_at) : '' ?> </span>
             <!-- 留言訊息 -->
             <p><?= nl2br($msg->message) ?></p>
             <?php if($msg->upload): ?>

@@ -9,28 +9,6 @@
 
 
 <div class="w3-container">
-    <?php
-    /**
-     * 發生問題時，alert訊息提醒
-     */
-    if(Session::get_flash('failed')): ?>
-        <div class="w3-round w3-pale-red">
-            <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
-            <h3><i class="fa fa-frown-o"></i><?= Session::get_flash('failed') ?></h3>
-        </div>
-    <?php endif; ?>
-
-    <?php
-    /**
-     * 發生問題時，alert訊息提醒
-     */
-    if(Session::get_flash('warning')): ?>
-        <div class="w3-round w3-pale-yellow">
-            <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
-            <h3><i class="fa fa-child"></i><?= Session::get_flash('warning') ?></h3>
-            <a class="w3-btn w3-btn-floating  w3-pink" title="加入我們" onclick="document.getElementById('modal_register').style.display='block'"><i class="fa fa-user-plus "></i></a>
-        </div>
-    <?php endif; ?>
 
     <div class="w3-card-4">
         <?= Form::open(['name'=>'registerForm','action'=>'login','method'=>'post']) ?>

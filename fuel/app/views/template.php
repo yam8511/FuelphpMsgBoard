@@ -46,7 +46,7 @@
         <h4 class="w3-padding-0"><b><?= isset($user) ? $user->name : 'Guest' ?></b></h4>
         <p class="w3-text-grey">Template by W3.CSS</p>
     </div>
-    <?php $root = '/FuelphpMsgBoard/public/' ?>
+    <?php $root = '/' ?>
     <a href=<?= $root ?> class="w3-padding w3-text-teal"><i class="fa fa-home w3-xlarge"></i> 留言板</a>
     <?php if($login) { ?>
         <a href="<?= $root ?>belong" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-book w3-xlarge"></i> 我的留言</a>
@@ -79,6 +79,39 @@
     </header>
 
 
+    <?php
+    /**
+     * 成功執行後，alert訊息提醒
+     */
+    if(Session::get_flash('success')){ ?>
+        <div class="w3-round w3-pale-green">
+            <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
+            <h3><i class="fa fa-check-square-o"></i><?= Session::get_flash('success') ?></h3>
+        </div>
+    <?php } ?>
+
+    <?php
+    /**
+     * 發生failed時，alert訊息提醒
+     */
+    if(Session::get_flash('failed')): ?>
+        <div class="w3-round w3-pale-red">
+            <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
+            <h3><i class="fa fa-frown-o"></i><?= Session::get_flash('failed') ?></h3>
+        </div>
+    <?php endif; ?>
+
+    <?php
+    /**
+     * 發生warning時，alert訊息提醒
+     */
+    if(Session::get_flash('warning')): ?>
+        <div class="w3-round w3-pale-yellow">
+            <span onclick="this.parentElement.style.display='none'" class="w3-closebtn"><i class="fa fa-close"></i></span>
+            <h3><i class="fa fa-child"></i><?= Session::get_flash('warning') ?></h3>
+            <a class="w3-btn w3-btn-floating  w3-pink" title="加入我們" onclick="document.getElementById('modal_register').style.display='block'"><i class="fa fa-user-plus "></i></a>
+        </div>
+    <?php endif; ?>
 
     <div class="w3-container w3-padding">
         <h1><?= $title ?></h1>

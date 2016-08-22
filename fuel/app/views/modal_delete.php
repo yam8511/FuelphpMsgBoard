@@ -8,7 +8,7 @@
 ?>
 <?php
     $modal_id = 'modal_delete_'.$type.'_'.$msg->id;
-    $root = '/FuelphpMsgBoard/public/';
+    $root = '/';
 ?>
 <div id="<?= $modal_id ?>" class="w3-modal" style="z-index: 900;">
     <div class="w3-modal-content w3-animate-zoom w3-card-8">

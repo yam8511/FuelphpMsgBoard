@@ -1,91 +1,15 @@
 <?php
 
-class Controller_Msgboard extends Controller_Template
+class Controller_Msgboard1 extends Controller_Template
 {
-    private $user = null;
-    private $login = false;
-
 	public function before(){
         parent::before();
 
-        if(!DBUtil::table_exists('msgboards'))
-        {
-            DBUtil::create_table(
-                'msgboards',
-                array(
-                    'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-                    'title' => array('constraint' => 255, 'type' => 'varchar'),
-                    'message' => array('type' => 'text'),
-                    'created_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'updated_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'account_id'=>array('constraint'=>11,'type'=>'int','default'=>0),
-                ),
-                array('id'), true, 'InnoDB', 'utf8_unicode_ci'
-            );
-        }
-
-        if(!DBUtil::table_exists('accounts'))
-        {
-            DBUtil::create_table(
-                'accounts',
-                array(
-                    'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-                    'name' => array('constraint' => 255, 'type' => 'varchar'),
-                    'password' => array('constraint' => 255, 'type' => 'varchar'),
-                    'email' => array('constraint' => 255, 'type' => 'varchar'),
-                    'created_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'updated_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'admin'=>array('constraint'=>11,'type'=>'tinyint','default'=>0),
-                ),
-                array('id'), true, 'InnoDB', 'utf8_unicode_ci'
-            );
-        }
-
-        if(!DBUtil::table_exists('replies'))
-        {
-            DBUtil::create_table(
-                'replies',
-                array(
-                    'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-                    'message' => array('type' => 'text'),
-                    'created_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'updated_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'msgboard_id'=>array('constraint'=>11,'type'=>'int','default'=>0),
-                    'account_id'=>array('constraint'=>11,'type'=>'int','default'=>0),
-                ),
-                array('id'), true, 'InnoDB', 'utf8_unicode_ci'
-            );
-        }
-
-        if(!\Fuel\Core\DBUtil::table_exists('uploads'))
-        {
-            \Fuel\Core\DBUtil::create_table(
-                'uploads',
-                array(
-                    'id' => array('constraint' => 11, 'type' => 'int', 'auto_increment' => true),
-                    'name' => array('constraint' => 255, 'type' => 'varchar'),
-                    'extension' => array('constraint' => 255, 'type' => 'varchar'),
-                    'saved_as' => array('constraint' => 255, 'type' => 'varchar'),
-                    'saved_to' => array('constraint' => 255, 'type' => 'varchar'),
-                    'created_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'updated_at' => array('type' => 'timestamp', 'default'=>DB::expr('CURRENT_TIMESTAMP')),
-                    'msgboard_id'=>array('constraint'=>11,'type'=>'int','default'=>0),
-                ),
-                array('id'),true, 'InnoDB', 'utf8_unicode_ci'
-            );
-        }
-
-        if(Cookie::get('user'))
-        {
-            $id = Cookie::get('user');
-            $this->template->user =  Model_Account::find($id);
+        if (Auth::check()) {
             $this->template->login = true;
-            $this->login = true;
-            $this->user = Model_Account::find($id);
-        }
-        else{
-            $this->login = false;
-            $this->user = null;
+        } else {
+            $this->template->login = false;
+            $this->template->user =  Model_Account::find($id);
         }
     }
 

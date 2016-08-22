@@ -6,7 +6,7 @@
  * Time: 下午 03:28
  */
 ?>
-<?php $root = '/FuelphpMsgBoard/public/'; ?>
+<?php $root = '/'; ?>
 <div class="w3-container w3-margin-bottom">
     <ul class="w3-ul w3-card-4">
         <!-- 回覆列表 -->
