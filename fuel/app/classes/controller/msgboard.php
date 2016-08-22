@@ -129,7 +129,7 @@ class Controller_Msgboard extends Controller_Template
         }
             // 自訂此上傳的配置
             $config = array(
-                'path' => './uploads',
+                'path' => './assets/img/uploads',
                 'randomize' => true,
                 'ext_whitelist' => array('img', 'jpg', 'jpeg', 'gif', 'png'),
             );
@@ -259,8 +259,9 @@ class Controller_Msgboard extends Controller_Template
         $this->template->content = View::forge('msgboard/index', $data);
 	}
 
-	public function get_view($id = null)
+	public function get_view()
 	{
+        $id = $this->param('id');
         if($this->login && ($this->user->id == $id)) { 
             return Response::redirect('belong');
         }
@@ -268,6 +269,7 @@ class Controller_Msgboard extends Controller_Template
         $person = Model_Account::find($id);
 
         if(!$person) {
+            Session::set_flash('failed', 'No Person'.$id);
             return Response::redirect('/');
         }        
 

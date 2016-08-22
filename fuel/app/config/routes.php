@@ -25,5 +25,7 @@ return array(
 
 	'login' => 'account/login',
 
-	'logout' => 'account/logout'
+	'logout' => 'account/logout',
+
+	'view/:id' => 'msgboard/view',
 );
