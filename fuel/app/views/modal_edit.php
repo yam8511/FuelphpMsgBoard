@@ -6,7 +6,10 @@
  * Time: 下午 02:10
  */
 ?>
-<?php $modal_id = 'modal_edit_'.$type.'_'.$msg->id; ?>
+<?php 
+    $modal_id = 'modal_edit_'.$type.'_'.$msg->id; 
+    $root = '/FuelphpMsgBoard/public/';
+?>
 <div id="<?= $modal_id ?>" class="w3-modal" style="z-index: 900;">
     <div class="w3-modal-content w3-animate-zoom w3-card-8">
         <header class="w3-container w3-purple">
@@ -21,7 +24,7 @@
             <?php } ?>
 
             <div class="w3-container">
-                <form action="/edit_<?= $type ?>" method="post">
+                <form action="<?= $root ?>edit_<?= $type ?>" method="post">
                     <label class="w3-label">暱稱</label>
                     <input class="w3-input w3-hover-border-cyan" type="text" name="name" value="<?= ($type == 'msg') ? $msg->account->name : $msg->user($msg->account_id)->name ?>"  placeholder="您的暱稱" readonly>
 

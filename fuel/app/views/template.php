@@ -46,18 +46,16 @@
         <h4 class="w3-padding-0"><b><?= isset($user) ? $user->name : 'Guest' ?></b></h4>
         <p class="w3-text-grey">Template by W3.CSS</p>
     </div>
-    <a href="/home" class="w3-padding w3-text-teal"><i class="fa fa-home w3-xlarge"></i> 留言板</a>
+    <?php $root = '/FuelphpMsgBoard/public/' ?>
+    <a href=<?= $root ?> class="w3-padding w3-text-teal"><i class="fa fa-home w3-xlarge"></i> 留言板</a>
     <?php if($login) { ?>
-    <a href="/belong" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-book w3-xlarge"></i> 我的留言</a>
+        <a href="<?= $root ?>belong" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-book w3-xlarge"></i> 我的留言</a>
+        <a href="<?= $root ?>logout" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-sign-out  w3-xlarge"></i> 登出</a>
     <?php }else{ ?>
-    <a href="/register" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-user-plus w3-xlarge"></i> 註冊</a>
+        <a href="<?= $root ?>register" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-user-plus w3-xlarge"></i> 註冊</a>
+        <a href="<?= $root ?>login" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-sign-in  w3-xlarge"></i> 登入</a>
     <?php } ?>
-    
-    <?php if($login) { ?>
-        <a href="/logout" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-sign-out  w3-xlarge"></i> 登出</a>
-    <?php }else{ ?>
-        <a href="/login" class=" w3-text-teal w3-padding w3-hover-theme"><i class="fa fa-sign-in  w3-xlarge"></i> 登入</a>
-    <?php } ?>
+
 </nav>
 
 <!-- Overlay effect when opening sidenav on small screens -->

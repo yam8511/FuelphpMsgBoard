@@ -32,7 +32,6 @@
         </div>
     <?php endif; ?>
 
-
     <div class="w3-card-4">
         <?= Form::open(['name'=>'registerForm','action'=>'login','method'=>'post']) ?>
         <div class="w3-form  w3-margin ">

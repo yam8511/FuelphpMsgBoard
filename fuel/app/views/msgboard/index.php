@@ -7,12 +7,12 @@
  */
 
 ?>
-
+<?php $root = '/FuelphpMsgBoard/public/'; ?>
 <div class="w3-container w3-margin">
-    <a class="w3-btn w3-btn-floating  w3-teal" title="留話" href="add"><i class="fa fa-plus"></i></a>
+    <a class="w3-btn w3-btn-floating  w3-teal" title="留話" href="<?= $root ?>add"><i class="fa fa-plus"></i></a>
 
     <?php if($login){ ?>
-    <a class="w3-btn w3-btn-floating  w3-blue" title="登出" href="logout"><i class="fa fa-sign-out"></i></a>
+    <a class="w3-btn w3-btn-floating  w3-blue" title="登出" href="<?= $root ?>logout"><i class="fa fa-sign-out"></i></a>
     <?php }else{ ?>
     <a class="w3-btn w3-btn-floating  w3-pink" title="加入我們" onclick="document.getElementById('modal_register').style.display='block'"><i class="fa fa-user-plus "></i></a>
     <a class="w3-btn w3-btn-floating  w3-blue" title="登入" onclick="document.getElementById('modal_login').style.display='block'"><i class="fa fa-sign-in"></i></a>

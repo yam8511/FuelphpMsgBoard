@@ -1,5 +1,6 @@
-<a class="w3-btn w3-btn-floating  w3-green" href="/"><i class="fa fa-mail-reply"></i></a>
-<form action="/add" method="post" enctype="multipart/form-data" accept-charset="utf-8" class="w3-form w3-border w3-border-teal w3-margin">
+<?php $root = '/FuelphpMsgBoard/public/'; ?>
+<a class="w3-btn w3-btn-floating  w3-green" href="<?= $root ?>"><i class="fa fa-mail-reply"></i></a>
+<form action="<?= $root ?>add" method="post" enctype="multipart/form-data" accept-charset="utf-8" class="w3-form w3-border w3-border-teal w3-margin">
     <label class="w3-label">標題</label>
     <input type="text" name="title" class="w3-input w3-hover-border-cyan" placeholder="輸入主題" required>
     <br>

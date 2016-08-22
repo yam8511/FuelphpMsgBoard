@@ -7,7 +7,6 @@
  */
 ?>
 <div class="w3-container">
-
     <div class="w3-card-4">
         <?= Form::open(['name'=>'registerForm','action'=>'register','method'=>'post']) ?>
         <div class="w3-form  w3-margin ">

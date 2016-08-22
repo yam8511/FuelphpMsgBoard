@@ -6,7 +6,7 @@
  * Time: 下午 03:28
  */
 ?>
-
+<?php $root = '/FuelphpMsgBoard/public/'; ?>
 <div class="w3-container w3-margin-bottom">
     <ul class="w3-ul w3-card-4">
         <!-- 回覆列表 -->
@@ -37,7 +37,7 @@
 </div>
 
 <!-- 回覆輸入 -->
-<form action="/reply" method="post" accept-charset="UTF-8">
+<form action="<?= $root ?>reply" method="post" accept-charset="UTF-8">
     <div class="w3-row-padding">
         <div class="w3-col m10">
             <?php if($login) { ?>
